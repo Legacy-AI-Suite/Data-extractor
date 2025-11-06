@@ -16,7 +16,7 @@ services:
       paths:
         - backend/**
 
-  - type: static
+  - type: web
     name: data-extractor-web
     env: static
     buildCommand: |
