@@ -21,11 +21,13 @@ services:
   - type: web
     name: data-extractor-frontend
     env: static
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
     buildFilter:
       paths:
         - frontend/**
+    rootDir: frontend
     envVars:
       - key: VITE_API_URL
         value: https://data-extractor-api.onrender.com
+    plan: free
