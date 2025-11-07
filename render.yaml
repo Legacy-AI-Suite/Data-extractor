@@ -31,4 +31,3 @@ services:
       - key: VITE_API_URL
         value: https://data-extractor-api.onrender.com
     plan: free
-    region: global
