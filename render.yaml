@@ -1,10 +1,10 @@
 services:
+  # === Backend API ===
   - type: web
     name: data-extractor-api
     env: python
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port 10000
     autoDeploy: true
     envVars:
       - key: PYTHON_VERSION
@@ -16,3 +16,18 @@ services:
     buildFilter:
       paths:
         - backend/**
+
+  # === Frontend Web App ===
+  - type: web
+    name: data-extractor-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    buildFilter:
+      paths:
+        - frontend/**
+    envVars:
+      - key: VITE_API_URL
+        value: https://data-extractor-api.onrender.com
+    plan: free
+    region: oregon
